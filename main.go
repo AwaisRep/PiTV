@@ -2,6 +2,8 @@ package main
 
 import (
 	"embed"
+	"log"
+	"pitv/database"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -12,12 +14,24 @@ import (
 var assets embed.FS
 
 func main() {
+
+	db, db_error := database.Connect()
+	if db_error != nil {
+		log.Fatalf("Could not load the database: %v", db_error)
+	}
+
+	db_error = database.Migrations(db)
+	if db_error != nil {
+		log.Fatalf("Could not run migrations: %v", db_error)
+	}
+
+	log.Printf("We succesfully loaded the database")
 	// Create an instance of the app structure
 	app := NewApp()
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "pitv",
+		Title:  "PiTV",
 		Width:  1024,
 		Height: 768,
 		AssetServer: &assetserver.Options{
