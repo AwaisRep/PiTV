@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 	"log"
+	"pitv/client"
 	"pitv/database"
 
 	"github.com/wailsapp/wails/v2"
@@ -15,12 +16,12 @@ var assets embed.FS
 
 func main() {
 
-	db, db_error := database.Connect()
+	db_error := database.Connect()
 	if db_error != nil {
 		log.Fatalf("Could not load the database: %v", db_error)
 	}
 
-	db_error = database.Migrations(db)
+	db_error = database.Migrations(database.DB)
 	if db_error != nil {
 		log.Fatalf("Could not run migrations: %v", db_error)
 	}
@@ -40,6 +41,7 @@ func main() {
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
 		OnStartup:        app.startup,
 		Bind: []interface{}{
+			client.NewClient(),
 			app,
 		},
 	})
