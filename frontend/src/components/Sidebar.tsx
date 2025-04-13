@@ -1,4 +1,7 @@
+// components/Sidebar.tsx
 import { useState } from 'react';
+import { NavLink } from 'react-router';
+import { SidebarNavLink } from './SidebarNavLink';
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -16,38 +19,31 @@ const Sidebar = () => {
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-base-200 flex flex-col justify-between">
           {/* Logo Section */}
-          <a href="" className="flex items-center ps-2.5 mb-5">
+          <NavLink to="/" className="flex items-center ps-2.5 mb-5">
             <span className="self-center text-xl font-semibold whitespace-nowrap text-primary-content">
               PiTV
             </span>
-          </a>
+          </NavLink>
 
           {/* Sidebar Menu */}
           <ul className="space-y-2 font-medium my-auto">
-          <li>
-            <a
-              href="#"
-              className="flex items-center p-3 rounded-lg hover:bg-base-300 text-base-content hover:text-primary-content group"
-            >
-              <svg
-                className="shrink-0 w-6 h-6 text-neutral-content group-hover:text-primary-content transition duration-75"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-              </svg>
-              <span className="ms-3 text-lg font-medium translate-y-0.5">Home</span>
-            </a>
-          </li>
-
+            <li>
+              <SidebarNavLink to="/" end>
+                <svg
+                  className="shrink-0 w-6 h-6 text-neutral-content group-hover:text-primary-content transition duration-75"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                <span className="ms-3 text-lg font-medium translate-y-0.5">Home</span>
+              </SidebarNavLink>
+            </li>
 
             <li>
-              <a
-                href="#"
-                className="flex items-center p-3 rounded-lg hover:bg-base-300 text-base-content hover:text-primary-content group"
-              >
+              <SidebarNavLink to="/playlists">
                 <svg
                   className="shrink-0 w-6 h-6 text-neutral-content group-hover:text-primary-content transition duration-75"
                   aria-hidden="true"
@@ -58,14 +54,11 @@ const Sidebar = () => {
                   <path d="M18 3a1 1 0 00-1-1h-4a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V3zM8 3a1 1 0 00-1-1H3a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V3zm10 8a1 1 0 00-1-1h-4a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1v-4zM8 11a1 1 0 00-1-1H3a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1v-4z" />
                 </svg>
                 <span className="ms-3 text-lg font-medium">Playlists</span>
-              </a>
+              </SidebarNavLink>
             </li>
 
             <li>
-              <a
-                href="#"
-                className="flex items-center p-3 rounded-lg hover:bg-base-300 text-base-content hover:text-primary-content group"
-              >
+              <SidebarNavLink to="/proxy">
                 <svg
                   className="shrink-0 w-6 h-6 text-neutral-content group-hover:text-primary-content transition duration-75"
                   aria-hidden="true"
@@ -78,14 +71,11 @@ const Sidebar = () => {
                   <path d="M4.562 11.297C4.562 9.703 5.851 8.414 7.446 8.414C9.04 8.414 10.329 9.703 10.329 11.297C10.329 12.892 9.04 14.181 7.446 14.181C5.851 14.181 4.562 12.892 4.562 11.297Z"/>
                 </svg>
                 <span className="ms-3 text-lg font-medium">Proxy</span>
-              </a>
+              </SidebarNavLink>
             </li>
 
             <li>
-              <a
-                href="#"
-                className="flex items-center p-3 rounded-lg hover:bg-base-300 text-base-content hover:text-primary-content group"
-              >
+              <SidebarNavLink to="/about">
                 <svg
                   className="shrink-0 w-6 h-6 text-neutral-content group-hover:text-primary-content transition duration-75"
                   aria-hidden="true"
@@ -96,13 +86,13 @@ const Sidebar = () => {
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                 </svg>
                 <span className="ms-3 text-lg font-medium">About</span>
-              </a>
+              </SidebarNavLink>
             </li>
           </ul>
         </div>
       </aside>
 
-      {/* Toggle Arrow Button - Fixed in the middle of the sidebar's right edge */}
+      {/* Toggle button remains unchanged */}
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
         className={`fixed top-1/2 -translate-y-1/2 z-50 
@@ -130,7 +120,6 @@ const Sidebar = () => {
           <path 
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            strokeWidth={2} 
             d="M15 19l-7-7 7-7" 
           />
         </svg>
