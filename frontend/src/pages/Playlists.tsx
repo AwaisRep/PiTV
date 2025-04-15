@@ -1,4 +1,5 @@
-// pages/Home.tsx
+import { GetProfiles } from "@wailsjs/go/client/Client";
+
 export default function Home() {
     return (
       <div>
