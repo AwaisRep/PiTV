@@ -26,6 +26,13 @@ func main() {
 		log.Fatalf("Could not run migrations: %v", db_error)
 	}
 
+	test_seed := database.SeedTestProfile()
+	if test_seed != nil {
+		log.Fatalf("Error: %v", test_seed)
+	} else {
+		log.Printf("Seeded")
+	}
+
 	log.Printf("We succesfully loaded the database")
 	// Create an instance of the app structure
 	app := NewApp()
